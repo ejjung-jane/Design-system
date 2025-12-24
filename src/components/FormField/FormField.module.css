@@ -1,0 +1,55 @@
+.field {
+  display: block;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.row {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.vertical {
+  grid-template-columns: 1fr;
+}
+
+.horizontal {
+  grid-template-columns: auto 1fr;
+  align-items: start;
+}
+
+.label {
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-700);
+}
+
+.labelH {
+  padding-top: var(--space-10);
+}
+
+.required {
+  color: var(--color-error);
+}
+
+.control {
+  display: grid;
+  gap: var(--space-6);
+  width: 100%;
+}
+
+.message {
+  margin: 0;
+  font-size: var(--font-size-12);
+  line-height: var(--line-height-base);
+}
+
+.helper {
+  color: var(--color-gray-500);
+}
+
+.error {
+  color: var(--color-error);
+}

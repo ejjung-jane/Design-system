@@ -31,6 +31,7 @@ const preview: Preview = {
           data-theme={theme}
           style={{
             background: "var(--page-bg)",
+            // minHeight: "100vh",
             padding: 16,
           }}
         >
