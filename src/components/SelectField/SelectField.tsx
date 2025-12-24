@@ -1,5 +1,8 @@
-import { FormField, FormFieldProps } from "../FormField";
-import { Select, SelectProps } from "../Select";
+import { FormField } from "../FormField";
+import type { FormFieldProps } from "../FormField";
+
+import { Select } from "../Select";
+import type { SelectProps } from "../Select";
 
 export type SelectFieldProps = Omit<FormFieldProps, "children"> & SelectProps;
 

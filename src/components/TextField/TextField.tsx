@@ -1,5 +1,8 @@
-import { FormField, FormFieldProps } from "../FormField";
-import { Input, InputProps } from "../Input";
+import { FormField } from "../FormField/FormField";
+import type { FormFieldProps } from "../FormField/FormField";
+
+import { Input } from "../Input";
+import type { InputProps } from "../Input";
 
 export type TextFieldProps = Omit<FormFieldProps, "children"> & InputProps;
 
