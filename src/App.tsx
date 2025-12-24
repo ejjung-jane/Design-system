@@ -1,6 +1,6 @@
 import "./styles/global.css";
 import { Button } from "./components/Button";
-import { Input } from "./components/Input";
+import { Field } from "./components/Input";
 
 export default function App() {
   return (
@@ -12,12 +12,20 @@ export default function App() {
         <Button variant="secondary">Secondary</Button>
       </div>
 
-      <Input placeholder="Input md" />
-      <Input size="sm" placeholder="Input sm" />
-      <Input size="lg" placeholder="Input lg" />
-      <Input fullWidth placeholder="Full width input" />
-      <Input error placeholder="Error input" />
-      <Input disabled placeholder="Disabled input" />
+      <Field label="Email" placeholder="you@example.com" helperText="회사 이메일을 입력하세요." />
+
+      <Field
+        label="Password"
+        type="password"
+        placeholder="••••••••"
+        requiredMark
+        errorText="비밀번호는 8자 이상이어야 합니다."
+      />
+
+      <Field label="Disabled" disabled placeholder="비활성 상태" />
+
+      <Field label="Size sm" size="sm" placeholder="small" />
+      <Field label="Size lg" size="lg" placeholder="large" />
     </div>
   );
 }

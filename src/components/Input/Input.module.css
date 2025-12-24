@@ -32,11 +32,11 @@
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
 }
 
-.error {
+.invalid {
   border-color: var(--color-error);
 }
 
-.error:focus:not(.disabled) {
+.invalid:focus:not(.disabled) {
   box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.18);
 }
 

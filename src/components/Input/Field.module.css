@@ -1,0 +1,32 @@
+.field {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.label {
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-700);
+}
+
+.required {
+  color: var(--color-error);
+}
+
+.message {
+  margin: 0;
+  font-size: var(--font-size-12);
+  line-height: var(--line-height-base);
+}
+
+.helper {
+  color: var(--color-gray-500);
+}
+
+.error {
+  color: var(--color-error);
+}

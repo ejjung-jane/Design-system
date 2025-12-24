@@ -6,13 +6,13 @@ export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
   size?: InputSize;
   fullWidth?: boolean;
-  error?: boolean;
+  invalid?: boolean;
 }
 
 export function Input({
   size = "md",
   fullWidth = false,
-  error = false,
+  invalid = false,
   disabled,
   ...props
 }: InputProps) {
@@ -20,11 +20,11 @@ export function Input({
     styles.input,
     styles[size],
     fullWidth ? styles.fullWidth : "",
-    error ? styles.error : "",
+    invalid ? styles.invalid : "",
     disabled ? styles.disabled : "",
   ]
     .filter(Boolean)
     .join(" ");
 
-  return <input className={cls} disabled={disabled} {...props} />;
+  return <input className={cls} disabled={disabled} aria-invalid={invalid || undefined} {...props} />;
 }
