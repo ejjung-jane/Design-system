@@ -1,10 +1,23 @@
 .field {
-  display: grid;
-  gap: var(--space-6);
+  display: block;
 }
 
 .fullWidth {
   width: 100%;
+}
+
+.row {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.vertical {
+  grid-template-columns: 1fr;
+}
+
+.horizontal {
+  grid-template-columns: auto 1fr;
+  align-items: start;
 }
 
 .label {
@@ -13,8 +26,18 @@
   color: var(--color-gray-700);
 }
 
+.labelH {
+  padding-top: var(--space-10); /* input padding과 대충 높이 맞춤 */
+}
+
 .required {
   color: var(--color-error);
+}
+
+.control {
+  display: grid;
+  gap: var(--space-6);
+  width: 100%;
 }
 
 .message {

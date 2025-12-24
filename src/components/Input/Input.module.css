@@ -1,43 +1,86 @@
-.input {
-  width: auto;
+/* wrapper */
+.wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+
   border-radius: var(--radius-8);
   border: 1px solid var(--color-border);
   background: var(--color-gray-0);
   color: var(--color-gray-900);
-  outline: none;
 
   transition: border-color 120ms ease, box-shadow 120ms ease,
     background-color 120ms ease;
+
+  padding: 0 var(--space-12);
 }
 
+/* sizes: wrapper height/padding 느낌 조정 */
 .sm {
-  padding: var(--space-6) var(--space-12);
+  height: 32px;
   font-size: var(--font-size-12);
   border-radius: var(--radius-6);
+  padding: 0 var(--space-10);
 }
 
 .md {
-  padding: var(--space-10) var(--space-12);
+  height: 40px;
   font-size: var(--font-size-14);
 }
 
 .lg {
-  padding: var(--space-12) var(--space-16);
+  height: 48px;
   font-size: var(--font-size-16);
   border-radius: var(--radius-12);
+  padding: 0 var(--space-16);
 }
 
-.input:focus:not(.disabled) {
-  border-color: var(--color-primary-600);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
+/* actual input */
+.input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
+.affix {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-gray-500);
+  font-size: inherit;
+}
+
+.clear {
+  border: 0;
+  background: transparent;
+  color: var(--color-gray-500);
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  font-size: 18px;
+}
+
+.clear:hover {
+  color: var(--color-gray-900);
+}
+
+/* states */
+.wrap:focus-within:not(.disabled) {
+  border-color: var(--border-color-focus);
+  box-shadow: 0 0 0 var(--focus-ring-width) var(--focus-ring-color);
 }
 
 .invalid {
-  border-color: var(--color-error);
+  border-color: var(--border-color-error);
 }
 
-.invalid:focus:not(.disabled) {
-  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.18);
+.invalid:focus-within:not(.disabled) {
+  box-shadow: 0 0 0 var(--focus-ring-width) var(--focus-ring-error-color);
 }
 
 .disabled {

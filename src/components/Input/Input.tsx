@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import styles from "./Input.module.css";
 
 export type InputSize = "sm" | "md" | "lg";
@@ -7,6 +8,12 @@ export interface InputProps
   size?: InputSize;
   fullWidth?: boolean;
   invalid?: boolean;
+
+  prefix?: ReactNode;
+  suffix?: ReactNode;
+
+  clearable?: boolean; // X 버튼 표시
+  onClear?: () => void;
 }
 
 export function Input({
@@ -14,10 +21,28 @@ export function Input({
   fullWidth = false,
   invalid = false,
   disabled,
+
+  prefix,
+  suffix,
+  clearable = false,
+  onClear,
+
+  value,
+  defaultValue,
+
   ...props
 }: InputProps) {
-  const cls = [
-    styles.input,
+  const hasValue =
+    typeof value === "string"
+      ? value.length > 0
+      : typeof defaultValue === "string"
+      ? defaultValue.length > 0
+      : false;
+
+  const showClear = clearable && !!onClear && hasValue && !disabled;
+
+  const wrapCls = [
+    styles.wrap,
     styles[size],
     fullWidth ? styles.fullWidth : "",
     invalid ? styles.invalid : "",
@@ -26,5 +51,31 @@ export function Input({
     .filter(Boolean)
     .join(" ");
 
-  return <input className={cls} disabled={disabled} aria-invalid={invalid || undefined} {...props} />;
+  return (
+    <div className={wrapCls}>
+      {prefix ? <span className={styles.affix}>{prefix}</span> : null}
+
+      <input
+        className={styles.input}
+        disabled={disabled}
+        aria-invalid={invalid || undefined}
+        value={value}
+        defaultValue={defaultValue}
+        {...props}
+      />
+
+      {showClear ? (
+        <button
+          type="button"
+          className={styles.clear}
+          onClick={onClear}
+          aria-label="Clear"
+        >
+          ×
+        </button>
+      ) : null}
+
+      {suffix ? <span className={styles.affix}>{suffix}</span> : null}
+    </div>
+  );
 }

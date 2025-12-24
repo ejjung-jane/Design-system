@@ -1,12 +1,16 @@
+import { useId } from "react";
 import styles from "./Field.module.css";
 import { Input } from "./Input";
 import type { InputProps } from "./Input";
 
 export interface FieldProps extends Omit<InputProps, "invalid"> {
   label?: string;
-  requiredMark?: boolean; // 라벨 옆 * 표시
+  requiredMark?: boolean;
   helperText?: string;
   errorText?: string;
+
+  layout?: "vertical" | "horizontal";
+  labelWidth?: number | string; // 예: 120, "140px"
 }
 
 export function Field({
@@ -17,10 +21,14 @@ export function Field({
   id,
   fullWidth = true,
   disabled,
+
+  layout = "vertical",
+  labelWidth = 120,
+
   ...inputProps
 }: FieldProps) {
-  // id 없으면 label htmlFor 연결을 위해 간단 생성
-  const inputId = id ?? `field-${Math.random().toString(36).slice(2, 9)}`;
+  const reactId = useId();
+  const inputId = id ?? `field-${reactId}`;
 
   const describedById =
     helperText || errorText ? `${inputId}-desc` : undefined;
@@ -28,34 +36,46 @@ export function Field({
   const showError = Boolean(errorText);
   const showHelper = Boolean(helperText) && !showError;
 
+  const isHorizontal = layout === "horizontal";
+
   return (
     <div className={`${styles.field} ${fullWidth ? styles.fullWidth : ""}`}>
-      {label && (
-        <label className={styles.label} htmlFor={inputId}>
-          {label}
-          {requiredMark ? <span className={styles.required}> *</span> : null}
-        </label>
-      )}
+      <div
+        className={`${styles.row} ${isHorizontal ? styles.horizontal : styles.vertical}`}
+      >
+        {label && (
+          <label
+            className={`${styles.label} ${isHorizontal ? styles.labelH : ""}`}
+            htmlFor={inputId}
+            style={isHorizontal ? { width: labelWidth } : undefined}
+          >
+            {label}
+            {requiredMark ? <span className={styles.required}> *</span> : null}
+          </label>
+        )}
 
-      <Input
-        {...inputProps}
-        id={inputId}
-        fullWidth={fullWidth}
-        disabled={disabled}
-        invalid={showError}
-        aria-describedby={describedById}
-      />
+        <div className={styles.control}>
+          <Input
+            {...inputProps}
+            id={inputId}
+            fullWidth={true}
+            disabled={disabled}
+            invalid={showError}
+            aria-describedby={describedById}
+          />
 
-      {(showHelper || showError) && (
-        <p
-          id={describedById}
-          className={`${styles.message} ${
-            showError ? styles.error : styles.helper
-          }`}
-        >
-          {showError ? errorText : helperText}
-        </p>
-      )}
+          {(showHelper || showError) && (
+            <p
+              id={describedById}
+              className={`${styles.message} ${
+                showError ? styles.error : styles.helper
+              }`}
+            >
+              {showError ? errorText : helperText}
+            </p>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

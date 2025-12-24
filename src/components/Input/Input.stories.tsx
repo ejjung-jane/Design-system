@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Field } from "./Field";
 
@@ -50,6 +51,74 @@ export const Sizes: Story = {
       <Field label="Small" size="sm" placeholder="sm" />
       <Field label="Medium" size="md" placeholder="md" />
       <Field label="Large" size="lg" placeholder="lg" />
+    </div>
+  ),
+};
+
+export const Horizontal: Story = {
+  args: {
+    layout: "horizontal",
+    labelWidth: 120,
+    label: "Email",
+    helperText: "가로 레이아웃 예시입니다.",
+  },
+};
+
+export const WithPrefix: Story = {
+  args: {
+    label: "Search",
+    placeholder: "검색어 입력",
+    prefix: "🔍",
+    helperText: "prefix 예시",
+  },
+};
+
+export const WithSuffix: Story = {
+  args: {
+    label: "Weight",
+    placeholder: "0",
+    suffix: "kg",
+    helperText: "suffix 예시",
+  },
+};
+
+export const Clearable: Story = {
+  render: () => {
+    const [val, setVal] = useState("hello");
+
+    return (
+      <div style={{ maxWidth: 420 }}>
+        <Field
+          label="Clearable"
+          value={val}
+          onChange={(e) => setVal(e.target.value)}
+          clearable
+          onClear={() => setVal("")}
+          placeholder="type..."
+        />
+      </div>
+    );
+  },
+};
+
+export const ValidationStates: Story = {
+  render: () => (
+    <div style={{ display: "grid", gap: 16, maxWidth: 420 }}>
+      <Field label="Default" placeholder="default" />
+      <Field
+        label="Focused (click input)"
+        placeholder="focus me"
+      />
+      <Field
+        label="Error"
+        errorText="에러 메시지"
+        placeholder="error"
+      />
+      <Field
+        label="Disabled"
+        disabled
+        placeholder="disabled"
+      />
     </div>
   ),
 };
