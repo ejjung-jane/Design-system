@@ -1,0 +1,14 @@
+:root[data-theme="dark"],
+[data-theme="dark"] {
+  --color-gray-0: #0b1220;
+  --color-gray-100: rgba(148, 163, 184, 0.08);
+  --color-gray-500: #94a3b8;
+  --color-gray-900: #f8fafc;
+
+  --color-border: rgba(148, 163, 184, 0.25);
+
+  --focus-ring-color: rgba(59, 130, 246, 0.25);
+  --focus-ring-error-color: rgba(239, 68, 68, 0.25);
+
+  --shadow-2: 0 16px 40px rgba(0, 0, 0, 0.45);
+}

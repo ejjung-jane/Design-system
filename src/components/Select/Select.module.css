@@ -1,41 +1,78 @@
+/* Select.module.css */
+
+/* ✅ Root wrapper: dropdown positioning anchor */
 .wrap {
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-8);
-
-  border-radius: var(--radius-8);
-  border: 1px solid var(--color-border);
-  background: var(--color-gray-0);
-  color: var(--color-gray-900);
-
-  transition: border-color 120ms ease, box-shadow 120ms ease,
-    background-color 120ms ease;
-
-  padding: 0 var(--space-12);
+  display: inline-block;
 }
 
-.sm {
+.fullWidth {
+  width: 100%;
+}
+
+/* size wrapper: controlRow에 적용되도록 */
+.sm .controlRow {
   height: 32px;
   font-size: var(--font-size-12);
   border-radius: var(--radius-6);
   padding: 0 var(--space-10);
 }
 
-.md {
+.md .controlRow {
   height: 40px;
   font-size: var(--font-size-14);
+  border-radius: var(--radius-8);
+  padding: 0 var(--space-12);
 }
 
-.lg {
+.lg .controlRow {
   height: 48px;
   font-size: var(--font-size-16);
   border-radius: var(--radius-12);
   padding: 0 var(--space-16);
 }
 
-.fullWidth {
+/* ✅ Trigger row */
+.controlRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+
   width: 100%;
+
+  border: 1px solid var(--color-border);
+  background: var(--color-gray-0);
+  color: var(--color-gray-900);
+
+  transition: border-color 120ms ease, box-shadow 120ms ease,
+    background-color 120ms ease;
+}
+
+/* focus ring */
+.wrap:focus-within:not(.disabled) .controlRow {
+  border-color: var(--border-color-focus, var(--color-primary-600));
+  box-shadow: 0 0 0 var(--focus-ring-width, 3px)
+    var(--focus-ring-color, rgba(37, 99, 235, 0.18));
+}
+
+/* invalid */
+.invalid .controlRow {
+  border-color: var(--border-color-error, var(--color-error));
+}
+
+.invalid:focus-within:not(.disabled) .controlRow {
+  box-shadow: 0 0 0 var(--focus-ring-width, 3px)
+    var(--focus-ring-error-color, rgba(220, 38, 38, 0.18));
+}
+
+/* disabled */
+.disabled {
+  opacity: 0.55;
+}
+
+.disabled .controlRow {
+  background: var(--color-gray-100);
+  cursor: not-allowed;
 }
 
 .affix {
@@ -44,6 +81,7 @@
   color: var(--color-gray-500);
 }
 
+/* button trigger */
 .trigger {
   flex: 1;
   width: 100%;
@@ -64,6 +102,10 @@
   text-align: left;
 }
 
+.disabled .trigger {
+  cursor: not-allowed;
+}
+
 .value {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -79,49 +121,58 @@
   flex: none;
 }
 
-.wrap:focus-within:not(.disabled) {
+/* ✅ Dropdown panel */
+.dropdown {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 6px);
+  width: 100%;
+  z-index: 9999;
+
+  background: var(--color-gray-0);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-12);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+
+  overflow: hidden;
+}
+
+/* Search area */
+.searchWrap {
+  padding: var(--space-8);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-gray-0);
+}
+
+.search {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: var(--space-8) var(--space-10);
+  font-size: var(--font-size-14);
+
+  border-radius: var(--radius-8);
+  border: 1px solid var(--color-border);
+  outline: none;
+
+  background: var(--color-gray-0);
+  color: var(--color-gray-900);
+}
+
+.search:focus {
   border-color: var(--border-color-focus, var(--color-primary-600));
   box-shadow: 0 0 0 var(--focus-ring-width, 3px)
     var(--focus-ring-color, rgba(37, 99, 235, 0.18));
 }
 
-.invalid {
-  border-color: var(--border-color-error, var(--color-error));
-}
-
-.invalid:focus-within:not(.disabled) {
-  box-shadow: 0 0 0 var(--focus-ring-width, 3px)
-    var(--focus-ring-error-color, rgba(220, 38, 38, 0.18));
-}
-
-.disabled {
-  opacity: 0.55;
-  background: var(--color-gray-100);
-  cursor: not-allowed;
-}
-
-.disabled .trigger {
-  cursor: not-allowed;
-}
-
+/* ✅ List: MUST NOT be absolute (inside dropdown) */
 .list {
-  position: absolute;
-  left: 0;
-  top: calc(100% + 6px);
-  z-index: 20;
-
-  width: 100%;
   max-height: 240px;
   overflow: auto;
 
   margin: 0;
   padding: var(--space-6);
   list-style: none;
-
-  border-radius: var(--radius-12);
-  border: 1px solid var(--color-border);
-  background: var(--color-gray-0);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
 }
 
 .item {
@@ -145,4 +196,10 @@
 .itemDisabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.empty {
+  padding: var(--space-12);
+  color: var(--color-gray-500);
+  text-align: center;
 }

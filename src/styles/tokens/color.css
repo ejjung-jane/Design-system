@@ -1,25 +1,36 @@
+/* =========================
+   Design Tokens (Light)
+   ========================= */
 :root {
-  /* Brand / Primary */
-  --color-primary-50: #eff6ff;
-  --color-primary-100: #dbeafe;
-  --color-primary-500: #3b82f6;
-  --color-primary-600: #2563eb;
-  --color-primary-700: #1d4ed8;
-
-  /* Neutral */
   --color-gray-0: #ffffff;
-  --color-gray-50: #f9fafb;
-  --color-gray-100: #f3f4f6;
-  --color-gray-200: #e5e7eb;
-  --color-gray-500: #6b7280;
-  --color-gray-700: #374151;
-  --color-gray-900: #111827;
+  --color-gray-50: #f8fafc;
+  --color-gray-100: #f1f5f9;
+  --color-gray-500: #64748b;
+  --color-gray-700: #334155;
+  --color-gray-900: #0f172a;
 
-  /* Semantic */
-  --color-success: #16a34a;
-  --color-warning: #f59e0b;
+  --color-border: #e5e7eb;
+  --color-primary-600: #2563eb;
   --color-error: #dc2626;
 
-  /* Border / Shadow base */
-  --color-border: rgba(17, 24, 39, 0.12);
+  --page-bg: #ffffff;
+}
+
+/* =========================
+   Design Tokens (Dark)
+   ========================= */
+:root[data-theme="dark"],
+[data-theme="dark"] {
+  --color-gray-0: #0b0f19;
+  --color-gray-50: #0b0f19;
+  --color-gray-100: #121829;
+  --color-gray-500: #94a3b8;
+  --color-gray-700: #cbd5e1;
+  --color-gray-900: #e2e8f0;
+
+  --color-border: rgba(226, 232, 240, 0.18);
+  --color-primary-600: #60a5fa;
+  --color-error: #f87171;
+
+  --page-bg: #0b0f19;
 }

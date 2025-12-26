@@ -3,6 +3,14 @@ import { useState } from "react";
 import { TextField } from "../TextField";
 import { SelectField } from "../SelectField";
 
+const options = [
+  { value: "apple", label: "Apple" },
+  { value: "banana", label: "Banana" },
+  { value: "orange", label: "Orange" },
+  { value: "grape", label: "Grape" },
+  { value: "peach", label: "Peach" },
+];
+
 const fruitOptions = [
   { value: "apple", label: "Apple" },
   { value: "banana", label: "Banana" },
@@ -58,4 +66,18 @@ export const MixedForm: Story = {
       </div>
     );
   },
+};
+
+export const SearchableSelectField: Story = {
+  render: () => (
+    <div style={{ maxWidth: 420 }}>
+      <SelectField
+        label="Fruit"
+        searchable
+        searchPlaceholder="Search fruit..."
+        options={options}
+        helperText="검색해서 선택하세요."
+      />
+    </div>
+  ),
 };

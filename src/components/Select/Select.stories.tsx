@@ -68,3 +68,12 @@ export const Controlled: Story = {
     );
   },
 };
+
+export const Searchable: Story = {
+  args: {
+    placeholder: "Select fruit",
+    searchable: true,
+    searchPlaceholder: "Search fruit...",
+    options,
+  },
+};
