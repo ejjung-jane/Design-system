@@ -6,6 +6,7 @@
   --color-gray-900: #0f172a;
 
   --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8; /* hover */
   --color-error: #dc2626;
 
   /* Border */
@@ -38,4 +39,10 @@
 
   /* Shadow */
   --shadow-2: 0 12px 28px rgba(0, 0, 0, 0.12);
+
+  /* Button */
+  --btn-primary-bg: var(--color-primary-600);
+  --btn-primary-bg-hover: var(--color-primary-700);
+  --btn-primary-bg-active: var(--color-primary-800);
+  --btn-primary-text: #fff;
 }

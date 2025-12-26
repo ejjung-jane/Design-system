@@ -29,12 +29,11 @@ export function SelectField({
       {({ id, describedBy, invalid }) => (
         <Select
           {...selectProps}
-          // Select는 id가 input처럼 직접 연결되진 않지만,
-          // a11y를 위해 aria-describedby/invalid는 내려줌
+          id={id}
           invalid={invalid}
-          fullWidth={true}
-          // @ts-expect-error aria props 허용용(SelectProps에 추가해도 됨)
+          fullWidth={fullWidth}
           aria-describedby={describedBy}
+          aria-invalid={invalid || undefined}
         />
       )}
     </FormField>

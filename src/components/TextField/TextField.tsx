@@ -1,5 +1,5 @@
-import { FormField } from "../FormField/FormField";
-import type { FormFieldProps } from "../FormField/FormField";
+import { FormField } from "../FormField";
+import type { FormFieldProps } from "../FormField";
 
 import { Input } from "../Input";
 import type { InputProps } from "../Input";
@@ -30,7 +30,7 @@ export function TextField({
         <Input
           {...inputProps}
           id={id}
-          fullWidth={true}
+          fullWidth={fullWidth}
           invalid={invalid}
           aria-describedby={describedBy}
         />

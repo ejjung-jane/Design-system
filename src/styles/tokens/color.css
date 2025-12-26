@@ -10,7 +10,11 @@
   --color-gray-900: #0f172a;
 
   --color-border: #e5e7eb;
-  --color-primary-600: #2563eb;
+
+  --color-primary-600: #1677ff; /* antd Primary (기준) */
+  --color-primary-700: #0958d9; /* hover/active용 진한 톤 */
+  --color-primary-800: #003eb3; /* active(pressed) */
+
   --color-error: #dc2626;
 
   --page-bg: #ffffff;
@@ -29,7 +33,11 @@
   --color-gray-900: #e2e8f0;
 
   --color-border: rgba(226, 232, 240, 0.18);
-  --color-primary-600: #60a5fa;
+
+  --color-primary-600: #1668dc;
+  --color-primary-700: #3c89e8;
+  --color-primary-800: #1554ad;
+
   --color-error: #f87171;
 
   --page-bg: #0b0f19;

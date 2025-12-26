@@ -9,7 +9,7 @@ export type SelectOption = {
   disabled?: boolean;
 };
 
-export interface SelectProps {
+export interface SelectProps extends React.HTMLAttributes<HTMLDivElement> {
   options: SelectOption[];
 
   value?: string; // controlled
@@ -30,6 +30,11 @@ export interface SelectProps {
   /** 검색 기능 */
   searchable?: boolean;
   searchPlaceholder?: string;
+
+  /** 선택값 지우기 버튼 */
+  clearable?: boolean;
+  /** clear 발생 시 콜백(선택) */
+  onClear?: () => void;
 }
 
 export function Select({
@@ -49,6 +54,11 @@ export function Select({
 
   searchable = false,
   searchPlaceholder = "Search...",
+
+  clearable = false,
+  onClear,
+
+  ...rest
 }: SelectProps) {
   const uid = useId();
   const listboxId = `select-listbox-${uid}`;
@@ -116,6 +126,19 @@ export function Select({
     if (!opt || opt.disabled) return;
     setValue(opt.value);
     closeMenu();
+  };
+
+  const hasValue = Boolean(selectedValue);
+  const showClear = clearable && hasValue && !disabled;
+
+  const handleClear = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();      // ✅ 트리거 클릭으로 열렸다 닫혔다 방지
+    setValue("");             // ✅ 선택값 비우기
+    setQuery("");             // ✅ 검색어 초기화
+    setActiveIndex(0);
+    closeMenu();              // ✅ 드롭다운 닫기
+    onClear?.();
   };
 
   // ✅ filteredOptions가 줄어들 때 activeIndex 범위 보정
@@ -206,8 +229,14 @@ export function Select({
     }
   };
 
+  const onTriggerClick = () => {
+    if (disabled) return;
+    setOpen((v) => !v);
+    if (!open) openMenu();
+  };
+
   return (
-    <div ref={wrapRef} className={wrapCls}>
+    <div ref={wrapRef} className={wrapCls} {...rest}>
       {/* ✅ 트리거 라인: prefix / button / suffix */}
       <div className={styles.controlRow}>
         {prefix ? <span className={styles.affix}>{prefix}</span> : null}
@@ -215,7 +244,7 @@ export function Select({
         <button
           type="button"
           className={styles.trigger}
-          onClick={toggleMenu}
+          onClick={onTriggerClick}
           onKeyDown={onKeyDown}
           disabled={disabled}
           role="combobox"
@@ -227,8 +256,24 @@ export function Select({
           <span className={`${styles.value} ${!label ? styles.placeholder : ""}`}>
             {label || placeholder}
           </span>
-          <span className={styles.chev} aria-hidden="true">
-            ▾
+
+          <span className={styles.actions}>
+            {showClear ? (
+              <button
+                type="button"
+                className={styles.clearBtn}
+                onMouseDown={(e) => e.preventDefault()}  // ✅ 포커스/토글 튐 방지
+                onClick={handleClear}
+                aria-label="Clear selection"
+                tabIndex={-1} // ✅ 탭 포커스 흐름 단순화 (원하면 0으로)
+              >
+                ×
+              </button>
+            ) : null}
+
+            <span className={styles.chev} aria-hidden="true">
+              ▾
+            </span>
           </span>
         </button>
 

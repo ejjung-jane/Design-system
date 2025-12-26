@@ -14,66 +14,58 @@ const meta: Meta<typeof Select> = {
   title: "Components/Select",
   component: Select,
   tags: ["autodocs"],
+  argTypes: {
+    clearable: { control: "boolean" },
+    onClear: { action: "clear" },
+    onChange: { action: "change" },
+    searchable: { control: "boolean" },
+  },
   args: {
     options,
     placeholder: "Choose a fruit",
+    clearable: true, // ✅ 기본으로 켜두기 (선택하면 × 보임)
   },
 };
 export default meta;
 
 type Story = StoryObj<typeof Select>;
 
+/** 기본 */
 export const Default: Story = {};
 
-export const WithPrefix: Story = {
+/** 검색 + 클리어 */
+export const Searchable: Story = {
   args: {
-    prefix: "🍎",
+    searchable: true,
+    searchPlaceholder: "Search fruit...",
   },
 };
 
-export const Invalid: Story = {
-  args: {
-    invalid: true,
-  },
-};
-
+/** Disabled */
 export const Disabled: Story = {
   args: {
     disabled: true,
+    defaultValue: "apple",
   },
 };
 
-export const Sizes: Story = {
-  render: () => (
-    <div style={{ display: "grid", gap: 12, maxWidth: 420 }}>
-      <Select options={options} size="sm" placeholder="sm" />
-      <Select options={options} size="md" placeholder="md" />
-      <Select options={options} size="lg" placeholder="lg" />
-    </div>
-  ),
-};
-
+/** Controlled 예시 */
 export const Controlled: Story = {
-  render: () => {
-    const [val, setVal] = useState("banana");
+  render: (args) => {
+    const [value, setValue] = useState("banana");
     return (
-      <div style={{ maxWidth: 420 }}>
-        <Select
-          options={options}
-          value={val}
-          onChange={setVal}
-          placeholder="controlled"
-        />
-      </div>
+      <Select
+        {...args}
+        value={value}
+        onChange={(v) => {
+          setValue(v);
+          args.onChange?.(v);
+        }}
+        onClear={() => {
+          setValue("");
+          args.onClear?.();
+        }}
+      />
     );
-  },
-};
-
-export const Searchable: Story = {
-  args: {
-    placeholder: "Select fruit",
-    searchable: true,
-    searchPlaceholder: "Search fruit...",
-    options,
   },
 };
