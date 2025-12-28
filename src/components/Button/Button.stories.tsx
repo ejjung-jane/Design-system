@@ -1,6 +1,23 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "./Button";
 
+export const States = {
+  render: () => (
+    <div style={{ display: "grid", gap: 12, maxWidth: 420 }}>
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+        <Button variant="primary">Primary</Button>
+        <Button variant="primary" disabled>
+          Primary Disabled
+        </Button>
+      </div>
+
+      <div style={{ fontSize: 12, color: "var(--color-gray-500)" }}>
+        Hover/Active는 마우스로 직접 올려서 확인하세요.
+      </div>
+    </div>
+  ),
+};
+
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
   component: Button,
