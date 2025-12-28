@@ -24,11 +24,13 @@ export const Confirm: Story = {
           open={open}
           title="Delete item?"
           onClose={() => setOpen(false)}
+          initialFocusSelector='button[data-primary="true"]'
           footer={
             <>
               <Button variant="ghost" onClick={() => setOpen(false)}>
                 Cancel
               </Button>
+              {/* <Button data-primary="true">Confirm</Button> */}
               <Button
                 variant="primary"
                 onClick={() => {

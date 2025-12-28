@@ -1,87 +1,36 @@
-/* Select.module.css */
+/* src/components/Select/Select.module.css */
 
-/* ✅ Root wrapper: dropdown positioning anchor */
 .wrap {
   position: relative;
-  display: inline-block;
-}
-
-.fullWidth {
-  width: 100%;
-}
-
-/* size wrapper: controlRow에 적용되도록 */
-.sm .controlRow {
-  height: 32px;
-  font-size: var(--font-size-12);
-  border-radius: var(--radius-6);
-  padding: 0 var(--space-10);
-}
-
-.md .controlRow {
-  height: 40px;
-  font-size: var(--font-size-14);
-  border-radius: var(--radius-8);
-  padding: 0 var(--space-12);
-}
-
-.lg .controlRow {
-  height: 48px;
-  font-size: var(--font-size-16);
-  border-radius: var(--radius-12);
-  padding: 0 var(--space-16);
-}
-
-/* ✅ Trigger row */
-.controlRow {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: var(--space-8);
 
-  width: 100%;
-
+  border-radius: var(--radius-8);
   border: 1px solid var(--color-border);
   background: var(--color-gray-0);
   color: var(--color-gray-900);
 
-  transition: border-color 120ms ease, box-shadow 120ms ease,
-    background-color 120ms ease;
+  transition: border-color 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+  padding: 0 var(--space-12);
+
+  min-width: 220px;
 }
 
-/* focus ring */
-.wrap:focus-within:not(.disabled) .controlRow {
-  border-color: var(--border-color-focus, var(--color-primary-600));
-  box-shadow: 0 0 0 var(--focus-ring-width, 3px)
-    var(--focus-ring-color, rgba(37, 99, 235, 0.18));
-}
+.sm { height: 32px; font-size: var(--font-size-12); border-radius: var(--radius-6); padding: 0 var(--space-10); }
+.md { height: 40px; font-size: var(--font-size-14); }
+.lg { height: 48px; font-size: var(--font-size-16); border-radius: var(--radius-12); padding: 0 var(--space-16); }
 
-/* invalid */
-.invalid .controlRow {
-  border-color: var(--border-color-error, var(--color-error));
-}
-
-.invalid:focus-within:not(.disabled) .controlRow {
-  box-shadow: 0 0 0 var(--focus-ring-width, 3px)
-    var(--focus-ring-error-color, rgba(220, 38, 38, 0.18));
-}
-
-/* disabled */
-.disabled {
-  opacity: 0.55;
-}
-
-.disabled .controlRow {
-  background: var(--color-gray-100);
-  cursor: not-allowed;
-}
+.fullWidth { width: 100%; }
 
 .affix {
   display: inline-flex;
   align-items: center;
   color: var(--color-gray-500);
+  flex: none;
 }
 
-/* button trigger */
+/* trigger는 가운데 영역 */
 .trigger {
   flex: 1;
   width: 100%;
@@ -102,24 +51,15 @@
   text-align: left;
 }
 
-.disabled .trigger {
-  cursor: not-allowed;
-}
-
 .value {
+  flex: 1;
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.placeholder {
-  color: var(--color-gray-500);
-}
-
-.chev {
-  color: var(--color-gray-500);
-  flex: none;
-}
+.placeholder { color: var(--color-gray-500); }
 
 .actions {
   display: inline-flex;
@@ -128,51 +68,64 @@
   flex: none;
 }
 
-.clearBtn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 24px;
-  height: 24px;
-
+.clear {
   border: 0;
   background: transparent;
   color: var(--color-gray-500);
-  border-radius: var(--radius-8);
-
   cursor: pointer;
+  padding: 0;
   line-height: 1;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.clearBtn:hover {
-  background: var(--color-gray-100);
+.clear:hover {
   color: var(--color-gray-700);
 }
 
-.wrap.disabled .clearBtn {
-  cursor: not-allowed;
-  opacity: 0.6;
+.chev {
+  color: var(--color-gray-500);
+  flex: none;
 }
 
+.wrap:focus-within:not(.disabled) {
+  border-color: var(--border-color-focus, var(--color-primary-600));
+  box-shadow: 0 0 0 var(--focus-ring-width, 3px) var(--focus-ring-color, rgba(37, 99, 235, 0.18));
+}
 
-/* ✅ Dropdown panel */
+.invalid { border-color: var(--border-color-error, var(--color-error)); }
+
+.invalid:focus-within:not(.disabled) {
+  box-shadow: 0 0 0 var(--focus-ring-width, 3px) var(--focus-ring-error-color, rgba(220, 38, 38, 0.18));
+}
+
+.disabled {
+  opacity: 0.55;
+  background: var(--color-gray-100);
+  cursor: not-allowed;
+}
+
+.disabled .trigger { cursor: not-allowed; }
+
+/* ✅ 드롭다운이 absolute 컨테이너 */
 .dropdown {
   position: absolute;
   left: 0;
   top: calc(100% + 6px);
   width: 100%;
-  z-index: 9999;
+  z-index: 20;
 
   background: var(--color-gray-0);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-12);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
 
-  overflow: hidden;
+  overflow: hidden; /* search + list 하나로 */
 }
 
-/* Search area */
+/* ✅ search 영역 */
 .searchWrap {
   padding: var(--space-8);
   border-bottom: 1px solid var(--color-border);
@@ -195,19 +148,26 @@
 }
 
 .search:focus {
-  border-color: var(--border-color-focus, var(--color-primary-600));
-  box-shadow: 0 0 0 var(--focus-ring-width, 3px)
-    var(--focus-ring-color, rgba(37, 99, 235, 0.18));
+  border-color: var(--border-color-focus);
+  box-shadow: 0 0 0 var(--focus-ring-width) var(--focus-ring-color);
 }
 
-/* ✅ List: MUST NOT be absolute (inside dropdown) */
+/* ✅ 리스트는 컨테이너 안에서 일반 흐름(absolute 금지) */
 .list {
-  max-height: 240px;
-  overflow: auto;
-
   margin: 0;
   padding: var(--space-6);
   list-style: none;
+
+  max-height: 240px;
+  overflow: auto;
+}
+
+/* ✅ 가로 스크롤 방지 포인트 */
+.item,
+.empty {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .item {
@@ -216,17 +176,9 @@
   cursor: pointer;
 }
 
-.item:hover {
-  background: var(--color-gray-100);
-}
-
-.active {
-  background: var(--color-gray-100);
-}
-
-.selected {
-  font-weight: var(--font-weight-medium);
-}
+.item:hover { background: var(--color-gray-100); }
+.active { background: var(--color-gray-100); }
+.selected { font-weight: var(--font-weight-medium); }
 
 .itemDisabled {
   opacity: 0.5;
@@ -239,23 +191,3 @@
   text-align: center;
 }
 
-.right {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-8);
-  flex: none;
-}
-
-.clear {
-  border: 0;
-  background: transparent;
-  color: var(--color-gray-500);
-  cursor: pointer;
-  padding: 0;
-  line-height: 1;
-  font-size: 16px;
-}
-
-.clear:hover {
-  color: var(--color-gray-900);
-}
