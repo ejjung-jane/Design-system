@@ -1,10 +1,10 @@
-import { FormField } from "../FormField";
-import type { FormFieldProps } from "../FormField";
+import { FormField, type FormFieldProps } from "../FormField/FormField";
+import { Input, type InputProps } from "../Input/Input";
 
-import { Input } from "../Input";
-import type { InputProps } from "../Input";
-
-export type TextFieldProps = Omit<FormFieldProps, "children"> & InputProps;
+export interface TextFieldProps
+  extends Omit<FormFieldProps, "children"> {
+  inputProps?: Omit<InputProps, "id" | "aria-describedby" | "aria-invalid">;
+}
 
 export function TextField({
   label,
@@ -13,8 +13,8 @@ export function TextField({
   errorText,
   layout,
   labelWidth,
-  fullWidth = true,
-  ...inputProps
+  fullWidth,
+  inputProps,
 }: TextFieldProps) {
   return (
     <FormField
@@ -28,11 +28,10 @@ export function TextField({
     >
       {({ id, describedBy, invalid }) => (
         <Input
-          {...inputProps}
+          {...(inputProps as any)}
           id={id}
-          fullWidth={fullWidth}
-          invalid={invalid}
           aria-describedby={describedBy}
+          aria-invalid={invalid || undefined}
         />
       )}
     </FormField>

@@ -27,14 +27,7 @@ const preview: Preview = {
 
       // ✅ Story wrapper에 강제 적용 (가장 안정적)
       return (
-        <div
-          data-theme={theme}
-          style={{
-            background: "var(--page-bg)",
-            // minHeight: "100vh",
-            padding: 16,
-          }}
-        >
+        <div style={{ background: "var(--page-bg)", color: "var(--ds-text)", padding: 16 }}>
           <Story />
         </div>
       );

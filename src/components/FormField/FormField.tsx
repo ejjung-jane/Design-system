@@ -34,8 +34,11 @@ export function FormField({
 }: FormFieldProps) {
   const uid = useId();
   const id = `ff-${uid}`;
-  const describedBy =
-    helperText || errorText ? `${id}-desc` : undefined;
+
+  const helpId = helperText ? `${id}-help` : undefined;
+  const errorId = errorText ? `${id}-error` : undefined;
+
+  const describedBy = [errorId, helpId].filter(Boolean).join(" ") || undefined;
 
   const invalid = Boolean(errorText);
   const showHelper = Boolean(helperText) && !invalid;
@@ -59,14 +62,15 @@ export function FormField({
         <div className={styles.control}>
           {children({ id, describedBy, invalid })}
 
-          {(showHelper || invalid) && (
-            <p
-              id={describedBy}
-              className={`${styles.message} ${invalid ? styles.error : styles.helper}`}
-            >
-              {invalid ? errorText : helperText}
+          {invalid ? (
+            <p id={errorId} className={`${styles.message} ${styles.error}`} role="alert">
+              {errorText}
             </p>
-          )}
+          ) : showHelper ? (
+            <p id={helpId} className={`${styles.message} ${styles.helper}`}>
+              {helperText}
+            </p>
+          ) : null}
         </div>
       </div>
     </div>

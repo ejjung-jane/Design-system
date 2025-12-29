@@ -46,3 +46,63 @@
   --btn-primary-bg-active: var(--color-primary-800);
   --btn-primary-text: #fff;
 }
+
+/* =========================
+   DS alias (FINAL / CORRECT)
+   ========================= */
+
+:root[data-theme="light"]{
+  /* text */
+  --ds-text: var(--color-gray-900);
+  --ds-text-subtle: var(--color-gray-500);
+
+  /* surface / border */
+  --ds-control-bg: var(--color-gray-0);
+  --ds-border: var(--color-border);
+  --ds-border-hover: var(--color-gray-500);
+
+  /* focus / accent */
+  --ds-focus: var(--color-primary-600);
+  --ds-accent: var(--color-primary-600);
+
+  /* layout */
+  --ds-space-8: var(--space-8);
+  --ds-radius-6: var(--radius-6);
+  --ds-radius-8: var(--radius-8);
+
+  /* typography */
+  --ds-font-size-12: var(--font-size-12);
+  --ds-font-size-14: var(--font-size-14);
+  --ds-font-weight-medium: var(--font-weight-medium);
+
+  /* motion */
+  --ds-transition-fast: 120ms ease;
+}
+
+:root[data-theme="dark"]{
+  /* text */
+  --ds-text: var(--color-gray-900);
+  --ds-text-subtle: var(--color-gray-500);
+
+  /* surface / border */
+  --ds-control-bg: #0b1220; /* 다크용 직접 정의 */
+  --ds-border: rgba(255,255,255,0.16);
+  --ds-border-hover: rgba(255,255,255,0.32);
+
+  /* focus / accent */
+  --ds-focus: var(--color-primary-600);
+  --ds-accent: var(--color-primary-600);
+
+  /* layout */
+  --ds-space-8: var(--space-8);
+  --ds-radius-6: var(--radius-6);
+  --ds-radius-8: var(--radius-8);
+
+  /* typography */
+  --ds-font-size-12: var(--font-size-12);
+  --ds-font-size-14: var(--font-size-14);
+  --ds-font-weight-medium: var(--font-weight-medium);
+
+  /* motion */
+  --ds-transition-fast: 120ms ease;
+}

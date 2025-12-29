@@ -1,7 +1,11 @@
+// src/components/index.ts
 export * from "./Button";
 export * from "./Input";
+export * from "./Select";
+export * from "./Textarea";
+export * from "./Modal";
+
 export * from "./FormField";
 export * from "./TextField";
-export * from "./Select";
 export * from "./SelectField";
-export * from "./Modal";
+export * from "./TextareaField";

@@ -1,0 +1,38 @@
+/* src/components/ThemeToggle/ThemeToggle.module.css */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-8);
+
+  padding: 8px 10px;
+  border-radius: var(--ds-radius-8);
+  border: 1px solid var(--ds-border);
+  background: var(--ds-control-bg);
+  color: var(--ds-text);
+
+  cursor: pointer;
+  transition: var(--ds-transition-fast);
+}
+
+.btn:hover {
+  border-color: var(--ds-border-hover);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ds-focus);
+  outline-offset: 2px;
+}
+
+.text {
+  font-size: var(--ds-font-size-14);
+  font-weight: var(--ds-font-weight-medium);
+}
+
+.state {
+  font-size: var(--ds-font-size-12);
+  color: var(--ds-text-subtle);
+  padding: 2px 6px;
+  border-radius: var(--ds-radius-6);
+  border: 1px solid var(--ds-border);
+}

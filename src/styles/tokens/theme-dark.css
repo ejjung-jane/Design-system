@@ -1,0 +1,24 @@
+/* src/styles/tokens/theme-dark.css */
+:root[data-theme="dark"] {
+  --ds-bg: #0b1020;
+  --ds-surface: #111827;
+
+  --ds-text: #e2e8f0;
+  --ds-text-subtle: #9ca3af;
+
+  --ds-border: #374151;
+  --ds-border-hover: #4b5563;
+
+  --ds-accent: #7aa2ff;
+  --ds-accent-contrast: #0b1020;
+
+  --ds-danger: #ff6b6b;
+  --ds-warning: #fbbf24;
+  --ds-success: #34d399;
+
+  --ds-focus: #7aa2ff;
+
+  --ds-control-bg: #111827;
+  --ds-control-border: var(--ds-border);
+  --ds-control-border-hover: var(--ds-border-hover);
+}

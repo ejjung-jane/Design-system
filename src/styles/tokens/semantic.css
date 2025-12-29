@@ -1,0 +1,56 @@
+/* src/styles/tokens/semantic.css */
+:root {
+  /* ===== Typography ===== */
+  --ds-font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
+
+  --ds-font-size-12: 12px;
+  --ds-font-size-14: 14px;
+  --ds-font-size-16: 16px;
+
+  --ds-font-weight-regular: 400;
+  --ds-font-weight-medium: 500;
+  --ds-font-weight-semibold: 600;
+
+  /* ===== Radius ===== */
+  --ds-radius-6: 6px;
+  --ds-radius-8: 8px;
+  --ds-radius-pill: 999px;
+
+  /* ===== Spacing ===== */
+  --ds-space-2: 2px;
+  --ds-space-4: 4px;
+  --ds-space-6: 6px;
+  --ds-space-8: 8px;
+  --ds-space-10: 10px;
+  --ds-space-12: 12px;
+
+  /* ===== Motion ===== */
+  --ds-transition-fast: 120ms ease;
+
+  /* ===== Colors (Semantic) ===== */
+  --ds-bg: transparent;
+  --ds-surface: transparent;
+  --ds-text: currentColor;
+  --ds-text-subtle: currentColor;
+
+  --ds-border: transparent;
+  --ds-border-hover: transparent;
+
+  --ds-accent: transparent;
+  --ds-accent-contrast: transparent;
+
+  --ds-danger: transparent;
+  --ds-warning: transparent;
+  --ds-success: transparent;
+
+  /* ===== Focus ===== */
+  --ds-focus: transparent;
+
+  /* ===== Controls ===== */
+  --ds-control-bg: var(--ds-bg);
+  --ds-control-border: var(--ds-border);
+  --ds-control-border-hover: var(--ds-border-hover);
+  --ds-control-radius: var(--ds-radius-6);
+
+  --ds-disabled-opacity: 0.55;
+}

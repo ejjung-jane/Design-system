@@ -1,10 +1,10 @@
-import { FormField } from "../FormField";
-import type { FormFieldProps } from "../FormField";
+import { FormField, type FormFieldProps } from "../FormField/FormField";
+import { Select, type SelectProps } from "../Select/Select";
 
-import { Select } from "../Select";
-import type { SelectProps } from "../Select";
-
-export type SelectFieldProps = Omit<FormFieldProps, "children"> & SelectProps;
+export interface SelectFieldProps
+  extends Omit<FormFieldProps, "children"> {
+  selectProps: Omit<SelectProps, "id" | "aria-describedby" | "aria-invalid">;
+}
 
 export function SelectField({
   label,
@@ -13,8 +13,8 @@ export function SelectField({
   errorText,
   layout,
   labelWidth,
-  fullWidth = true,
-  ...selectProps
+  fullWidth,
+  selectProps,
 }: SelectFieldProps) {
   return (
     <FormField
@@ -28,10 +28,8 @@ export function SelectField({
     >
       {({ id, describedBy, invalid }) => (
         <Select
-          {...selectProps}
+          {...(selectProps as any)}
           id={id}
-          invalid={invalid}
-          fullWidth={fullWidth}
           aria-describedby={describedBy}
           aria-invalid={invalid || undefined}
         />

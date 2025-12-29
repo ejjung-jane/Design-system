@@ -304,20 +304,24 @@ export function Select({
         <span className={styles.actions}>
           {/* ✅ clearable: 선택값 있을 때만 × 표시 */}
           {clearable && !disabled && selectedValue ? (
-            <button
-              type="button"
-              className={styles.clear}
+            <span
+              role="button"
+              tabIndex={0}
               aria-label="Clear selection"
+              className={styles.clear}
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                if (!isControlled) setInnerValue("");
-                onChange?.("");
-                onClear?.();
+                onClear?.(); // 네 기존 clear 로직 호출
               }}
-            >
-              ×
-            </button>
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  onClear?.();
+                }
+              }}
+            />
           ) : null}
 
           <span className={styles.chev} aria-hidden="true">▾</span>

@@ -1,0 +1,24 @@
+/* src/styles/tokens/theme-light.css */
+:root[data-theme="light"] {
+  --ds-bg: #ffffff;
+  --ds-surface: #ffffff;
+
+  --ds-text: #0f172a;
+  --ds-text-subtle: #6b7280;
+
+  --ds-border: #c9cdd4;
+  --ds-border-hover: #9aa0aa;
+
+  --ds-accent: #2b6cff;
+  --ds-accent-contrast: #ffffff;
+
+  --ds-danger: #e5484d;
+  --ds-warning: #f59e0b;
+  --ds-success: #16a34a;
+
+  --ds-focus: #2b6cff;
+
+  --ds-control-bg: #ffffff;
+  --ds-control-border: var(--ds-border);
+  --ds-control-border-hover: var(--ds-border-hover);
+}
