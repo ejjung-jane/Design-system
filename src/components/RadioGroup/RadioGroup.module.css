@@ -1,0 +1,14 @@
+.root {
+  display: flex;
+  gap: var(--ds-space-8);
+}
+
+.root[data-direction="vertical"] {
+  flex-direction: column;
+}
+
+.root[data-direction="horizontal"] {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px;
+}

@@ -52,57 +52,74 @@
    ========================= */
 
 :root[data-theme="light"]{
+  /* controls */
+  --ds-control-bg: var(--color-gray-0);
+  --ds-control-bg-hover: var(--color-gray-100);
+  --ds-control-bg-disabled: var(--color-gray-100);
+
   /* text */
   --ds-text: var(--color-gray-900);
   --ds-text-subtle: var(--color-gray-500);
+  --ds-on-accent: #fff;
 
-  /* surface / border */
-  --ds-control-bg: var(--color-gray-0);
+  /* borders */
   --ds-border: var(--color-border);
-  --ds-border-hover: var(--color-gray-500);
+  --ds-border-hover: rgba(15, 23, 42, 0.24);
 
-  /* focus / accent */
-  --ds-focus: var(--color-primary-600);
+  /* accent */
   --ds-accent: var(--color-primary-600);
+  --ds-accent-hover: var(--color-primary-700);
 
-  /* layout */
+  /* danger */
+  --ds-danger: var(--color-error);
+
+  /* spacing / radius / typo */
   --ds-space-8: var(--space-8);
-  --ds-radius-6: var(--radius-6);
+  --ds-space-10: var(--space-10);
+  --ds-space-12: var(--space-12);
   --ds-radius-8: var(--radius-8);
-
-  /* typography */
   --ds-font-size-12: var(--font-size-12);
   --ds-font-size-14: var(--font-size-14);
   --ds-font-weight-medium: var(--font-weight-medium);
+
+  /* focus */
+  --ds-focus: var(--border-color-focus);
+  --ds-focus-ring: var(--focus-ring-color);
+  --ds-focus-ring-width: var(--focus-ring-width);
 
   /* motion */
   --ds-transition-fast: 120ms ease;
 }
 
 :root[data-theme="dark"]{
-  /* text */
+  /* dark는 일단 “보기 좋은 값”으로 고정해두고 나중에 팔레트화 */
+  --ds-control-bg: #0b1220;
+  --ds-control-bg-hover: #111b2d;
+  --ds-control-bg-disabled: #0b1220;
+
   --ds-text: var(--color-gray-900);
-  --ds-text-subtle: var(--color-gray-500);
+  --ds-text-subtle: #94a3b8;
+  --ds-on-accent: #0b1220;
 
-  /* surface / border */
-  --ds-control-bg: #0b1220; /* 다크용 직접 정의 */
   --ds-border: rgba(255,255,255,0.16);
-  --ds-border-hover: rgba(255,255,255,0.32);
+  --ds-border-hover: rgba(255,255,255,0.28);
 
-  /* focus / accent */
-  --ds-focus: var(--color-primary-600);
   --ds-accent: var(--color-primary-600);
+  --ds-accent-hover: var(--color-primary-700);
 
-  /* layout */
+  --ds-danger: var(--color-error);
+
   --ds-space-8: var(--space-8);
-  --ds-radius-6: var(--radius-6);
+  --ds-space-10: var(--space-10);
+  --ds-space-12: var(--space-12);
   --ds-radius-8: var(--radius-8);
-
-  /* typography */
   --ds-font-size-12: var(--font-size-12);
   --ds-font-size-14: var(--font-size-14);
   --ds-font-weight-medium: var(--font-weight-medium);
 
-  /* motion */
+  --ds-focus: var(--color-primary-600);
+  --ds-focus-ring: rgba(37, 99, 235, 0.24);
+  --ds-focus-ring-width: var(--focus-ring-width);
+
   --ds-transition-fast: 120ms ease;
 }

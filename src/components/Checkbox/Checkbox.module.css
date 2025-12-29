@@ -1,105 +1,98 @@
-/* src/components/Checkbox/Checkbox.module.css */
-
 .root {
   display: inline-flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: var(--ds-space-8);
   cursor: pointer;
-  user-select: none;
+  color: var(--ds-text);
 }
 
-.input {
-  /* 실제 input은 접근성/포커스용으로 남기고, 시각은 control이 담당 */
-  position: absolute;
-  opacity: 0;
-  width: 1px;
-  height: 1px;
-  pointer-events: none;
+.disabled {
+  cursor: not-allowed;
+  opacity: var(--ds-disabled-opacity, 0.6);
 }
 
 .control {
-  flex: 0 0 auto;
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--ds-control-border, #c9cdd4);
-  background: var(--ds-control-bg, #fff);
-  border-radius: var(--ds-control-radius);
-  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
 }
 
-.indicator {
-  width: 60%;
-  height: 60%;
+.input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  margin: 0;
+  cursor: inherit;
+}
+
+.box {
+  width: 18px;
+  height: 18px;
   border-radius: 4px;
-  transform: scale(0);
+  border: 1px solid var(--ds-border);
+  background: var(--ds-control-bg);
   transition: var(--ds-transition-fast);
-  background: var(--ds-accent, #2b6cff);
-}
-
-/* checked */
-.root:has(input:checked) .indicator {
-  transform: scale(1);
-}
-
-/* indeterminate */
-.root:has(input:indeterminate) .indicator {
-  transform: scale(1);
-  border-radius: 2px;
-  width: 60%;
-  height: 16%;
-}
-
-/* focus ring */
-.root:has(input:focus-visible) .control {
-  outline: 2px solid var(--ds-focus, #2b6cff);
-  outline-offset: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* hover */
-.root:hover .control {
-  border-color: var(--ds-border-hover, #9aa0aa);
+.root:hover .box {
+  border-color: var(--ds-border-hover);
 }
 
-/* disabled */
-.disabled {
-  cursor: not-allowed;
-  opacity: var(--ds-disabled-opacity);
+/* focus */
+.input:focus-visible + .box {
+  outline: 2px solid var(--ds-focus);
+  outline-offset: 2px;
 }
 
-/* invalid */
-.invalid .control {
-  border-color: var(--ds-danger, #e5484d);
+/* checked */
+.input:checked + .box {
+  background: var(--ds-accent);
+  border-color: var(--ds-accent);
 }
 
-.content {
+/* check mark */
+.input:checked + .box::after {
+  content: "";
+  width: 9px;
+  height: 5px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(-45deg);
+  margin-top: -1px;
+}
+
+/* indeterminate */
+.box[data-indeterminate="true"]::after {
+  content: "";
+  width: 10px;
+  height: 2px;
+  background: #fff;
+  border-radius: 1px;
+}
+
+/* label area */
+.text {
   display: inline-flex;
   flex-direction: column;
   gap: 2px;
-  line-height: 1.2;
 }
 
 .label {
-  font-size: 14px;
+  font-size: var(--ds-font-size-14);
+  font-weight: var(--ds-font-weight-medium);
+  line-height: 1.2;
 }
 
 .description {
-  font-size: 12px;
-  color: var(--ds-text-subtle, #6b7280);
-}
-
-/* sizes */
-.size-sm .control {
-  width: 16px;
-  height: 16px;
-}
-
-.size-md .control {
-  width: 18px;
-  height: 18px;
-}
-
-.size-lg .control {
-  width: 20px;
-  height: 20px;
+  font-size: var(--ds-font-size-12);
+  color: var(--ds-text-subtle);
+  line-height: 1.2;
 }

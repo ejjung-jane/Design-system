@@ -1,95 +1,134 @@
+/* ========== base ========== */
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-8);
+  gap: var(--ds-space-8);
 
+  border-radius: var(--ds-radius-8);
   border: 1px solid transparent;
-  border-radius: var(--radius-8);
 
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-tight);
+  font-size: var(--ds-font-size-14);
+  font-weight: var(--ds-font-weight-medium);
+  line-height: 1;
 
   cursor: pointer;
   user-select: none;
+  white-space: nowrap;
 
-  transition: background-color 120ms ease, border-color 120ms ease,
-    color 120ms ease, transform 80ms ease;
+  transition: background-color 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease,
+    transform 80ms ease;
 }
 
-/* sizes */
-.sm {
-  padding: var(--space-6) var(--space-12);
-  font-size: var(--font-size-12);
-  border-radius: var(--radius-6);
-}
-
-.md {
-  padding: var(--space-10) var(--space-16);
-  font-size: var(--font-size-14);
-}
-
-.lg {
-  padding: var(--space-12) var(--space-20);
-  font-size: var(--font-size-16);
-  border-radius: var(--radius-12);
-}
-
-/* variants */
-.primary {
-  background: var(--color-primary-600);
-  color: var(--color-gray-0);
-  border: 1px solid var(--color-primary-600);
-}
-
-.primary:hover:not(:disabled) {
-  background: var(--color-primary-700, var(--color-primary-600));
-  border-color: var(--color-primary-700, var(--color-primary-600));
-}
-
-.primary:active:not(:disabled) {
-  background: var(--color-primary-800, var(--color-primary-700, var(--color-primary-600)));
-  border-color: var(--color-primary-800, var(--color-primary-700, var(--color-primary-600)));
-}
-
-.primary:focus-visible {
+.button:focus {
   outline: none;
-  box-shadow: 0 0 0 var(--focus-ring-width, 3px)
-    var(--focus-ring-color, rgba(37, 99, 235, 0.18));
 }
 
-.secondary {
-  background: var(--color-gray-0);
-  color: var(--color-gray-900);
-  border-color: var(--color-border);
-  box-shadow: var(--shadow-sm);
+.button:focus-visible {
+  outline: var(--ds-focus-ring-width) solid var(--ds-focus-ring);
+  outline-offset: 2px;
 }
 
-.secondary:hover:not(.disabled) {
-  background: var(--color-gray-50);
-}
-
-.ghost {
-  background: transparent;
-  color: var(--color-gray-900);
-  border-color: transparent;
-}
-
-.ghost:hover:not(.disabled) {
-  background: var(--color-gray-100);
-}
-
-/* states */
-.button:active:not(.disabled) {
+.button:active:not(:disabled) {
   transform: translateY(1px);
 }
 
+.button:disabled,
 .disabled {
-  opacity: 0.5;
   cursor: not-allowed;
+  opacity: var(--ds-disabled-opacity, 0.6);
   transform: none;
 }
 
+/* ========== sizes ========== */
+/* 높이 + 좌우 패딩 기준. 필요하면 너 DS 기준으로 수치만 조정 */
+.sm {
+  height: 32px;
+  padding: 0 var(--ds-space-10);
+  font-size: var(--ds-font-size-12);
+  border-radius: var(--ds-radius-6);
+}
+
+.md {
+  height: 40px;
+  padding: 0 var(--ds-space-12);
+  font-size: var(--ds-font-size-14);
+}
+
+.lg {
+  height: 48px;
+  padding: 0 var(--ds-space-16, 16px);
+  font-size: var(--ds-font-size-14);
+  border-radius: var(--ds-radius-12, 12px);
+}
+
+/* ========== variants ========== */
+/* Primary */
+.primary {
+  background: var(--ds-accent);
+  color: var(--ds-on-accent, #fff);
+  border-color: var(--ds-accent);
+}
+
+.primary:hover:not(:disabled) {
+  background: var(--ds-accent-hover, var(--ds-accent));
+  border-color: var(--ds-accent-hover, var(--ds-accent));
+}
+
+/* Secondary (outline-ish) */
+.secondary {
+  background: var(--ds-control-bg);
+  color: var(--ds-text);
+  border-color: var(--ds-border);
+}
+
+.secondary:hover:not(:disabled) {
+  background: var(--ds-control-bg-hover, var(--ds-control-bg));
+  border-color: var(--ds-border-hover);
+}
+
+/* Ghost (text button) */
+.ghost {
+  background: transparent;
+  color: var(--ds-text);
+  border-color: transparent;
+}
+
+.ghost:hover:not(:disabled) {
+  background: var(--ds-control-bg-hover, rgba(0, 0, 0, 0.04));
+}
+
+/* Danger */
+.danger {
+  background: var(--ds-danger);
+  color: var(--ds-on-danger, #fff);
+  border-color: var(--ds-danger);
+}
+
+.danger:hover:not(:disabled) {
+  background: var(--ds-danger-hover, var(--ds-danger));
+  border-color: var(--ds-danger-hover, var(--ds-danger));
+}
+
+/* ========== full width ========== */
 .fullWidth {
   width: 100%;
+}
+
+/* ========== icon helpers (optional) ========== */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
+.leftIcon {
+  margin-right: 2px;
+}
+
+.rightIcon {
+  margin-left: 2px;
 }

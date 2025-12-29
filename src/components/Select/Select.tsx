@@ -18,7 +18,8 @@ export type SelectOption = {
 };
 
 export interface SelectProps extends HTMLAttributes<HTMLDivElement> {
-  options: SelectOption[];
+  /** ✅ 런타임 안전을 위해 optional 허용 (Docs/MDX/패턴에서 빠져도 크래시 방지) */
+  options?: SelectOption[];
 
   value?: string; // controlled
   defaultValue?: string; // uncontrolled
@@ -55,7 +56,7 @@ export interface SelectProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export function Select({
-  options,
+  options: optionsProp,
   value,
   defaultValue,
   onChange,
@@ -82,6 +83,9 @@ export function Select({
   className,
   ...rest
 }: SelectProps) {
+  /** ✅ runtime safe: options가 undefined로 들어와도 크래시 방지 */
+  const options = optionsProp ?? [];
+
   const uid = useId();
   const listboxId = `select-listbox-${uid}`;
 
@@ -191,8 +195,6 @@ export function Select({
     .join(" ");
 
   const label = selectedOption?.label ?? "";
-  const hasValue = Boolean(selectedValue);
-
   const onTriggerClick = () => {
     if (disabled) return;
     setOpen((v) => !v);
@@ -274,10 +276,7 @@ export function Select({
   };
 
   // ✅ 값이 짧아져도 wrap이 안 줄어들게: minWidth를 inline-style로 적용
-  const wrapStyle =
-    !fullWidth && minWidth !== undefined
-      ? { minWidth }
-      : undefined;
+  const wrapStyle = !fullWidth && minWidth !== undefined ? { minWidth } : undefined;
 
   return (
     <div ref={wrapRef} className={wrapCls} style={wrapStyle} {...rest}>
@@ -312,19 +311,21 @@ export function Select({
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                onClear?.(); // 네 기존 clear 로직 호출
+                clearSelection(); // ✅ 실제로 값 지우기
               }}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
                   e.preventDefault();
                   e.stopPropagation();
-                  onClear?.();
+                  clearSelection(); // ✅ 키보드도 동일
                 }
               }}
             />
           ) : null}
 
-          <span className={styles.chev} aria-hidden="true">▾</span>
+          <span className={styles.chev} aria-hidden="true">
+            ▾
+          </span>
         </span>
       </button>
 
